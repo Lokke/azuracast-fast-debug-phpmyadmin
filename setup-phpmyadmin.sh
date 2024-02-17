@@ -37,3 +37,15 @@ EOF
 
 echo "Das Docker Compose-File wurde erfolgreich erstellt."
 
+# Abfrage, ob das erstellte Skript gestartet werden soll
+read -p "Möchten Sie das erstellte Skript starten? (ja/nein): " start_response
+
+if [ "$start_response" == "ja" ]; then
+    # Abfrage, ob es als Daemon laufen soll
+    read -p "Soll das Skript als Daemon laufen? (ja/nein): " daemon_response
+    if [ "$daemon_response" == "ja" ]; then
+        docker-compose up -d
+    else
+        docker-compose up
+    fi
+fi
